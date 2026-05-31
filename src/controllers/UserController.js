@@ -87,13 +87,7 @@ export const atualizar = async (req, res) => {
         }
 
         if (req.body.nome !== undefined) {
-            exemplo.nome = req.body.nome;
-        }
-        if (req.body.estado !== undefined) {
-            exemplo.estado = req.body.estado;
-        }
-        if (req.body.preco !== undefined) {
-            exemplo.preco = parseFloat(req.body.preco);
+            user.nome = req.body.nome;
         }
 
         const data = await exemplo.atualizar();
