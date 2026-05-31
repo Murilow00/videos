@@ -90,7 +90,7 @@ export const atualizar = async (req, res) => {
             user.nome = req.body.nome;
         }
 
-        const data = await exemplo.atualizar();
+        const data = await user.atualizar();
 
         return res.status(200).json({ message: `O registro "${data.nome}" foi atualizado com sucesso!`, data });
     } catch (error) {
@@ -107,15 +107,15 @@ export const deletar = async (req, res) => {
             return res.status(400).json({ error: 'ID inválido.' });
         }
 
-        const exemplo = await ExemploModel.buscarPorId(parseInt(id));
+        const user = await Usermodel.buscarPorId(parseInt(id));
 
-        if (!exemplo) {
+        if (!user) {
             return res.status(404).json({ error: 'Registro não encontrado para deletar.' });
         }
 
-        await exemplo.deletar();
+        await user.deletar();
 
-        return res.status(200).json({ message: `O registro "${exemplo.nome}" foi deletado com sucesso!`, deletado: exemplo });
+        return res.status(200).json({ message: `O registro "${user.nome}" foi deletado com sucesso!`, deletado: user });
     } catch (error) {
         console.error('Erro ao deletar:', error);
         return res.status(500).json({ error: 'Erro ao deletar registro.' });
